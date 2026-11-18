@@ -276,5 +276,24 @@
       "title": "嶼光整合營銷｜品牌策略 · 網站設計 · 數碼營銷",
       "description": "香港品牌與網站創作公司，提供品牌策略、企業官網、網店、數碼營銷與內容製作。固定報價、每週進度、附內容管理後台。"
     }
-  }
+  },
+  "inquiries": [
+    {
+      "id": "a31c4cc0-6291-4f9e-92e4-e27a2bbab23f",
+      "ref": "INQ-BO0VTFB7D",
+      "name": "正式驗證",
+      "company": "Demo Co",
+      "email": "final-1795018497079@example.com",
+      "phone": "",
+      "type": "合作提案",
+      "budget": "",
+      "message": "這筆查詢用嚟確認正式網址 + 雲端資料持久化正常運作。",
+      "status": "new",
+      "replies": [],
+      "createdAt": "2026-11-18T16:14:57.401Z",
+      "updatedAt": "2026-11-18T16:14:57.401Z",
+      "ip": "103.135.102.200",
+      "ua": "node"
+    }
+  ]
 }
