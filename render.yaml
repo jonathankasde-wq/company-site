@@ -1,6 +1,6 @@
 # Render Blueprint（免費方案，$0／月）
-# 用法：把專案推上 GitHub → Render → New → Blueprint → 選 repo。
-# 部署完在 Environment 填 SUPABASE_URL / SUPABASE_SERVICE_KEY（見 deploy/supabase.sql）。
+# 用法：repo 已推到 GitHub → Render → New → Blueprint → 選 repo。
+# 部署時只需填 GH_DATA_TOKEN（見 DEPLOY-FREE.md）。
 # 免費方案 15 分鐘無流量會休眠（約 1 分鐘喚醒）；用 .github/workflows/warmup.yml 定時喚醒。
 services:
   - type: web
@@ -18,8 +18,11 @@ services:
         value: 0.0.0.0
       - key: PORT
         value: 4321
-      # 在 Render 後台手動填（不要寫進 repo）
-      - key: SUPABASE_URL
-        sync: false
-      - key: SUPABASE_SERVICE_KEY
+      # 資料存喺同一個 repo 的 data 分支（唔會觸發重新部署）
+      - key: GH_DATA_REPO
+        value: jonathankasde-wq/company-site
+      - key: GH_DATA_BRANCH
+        value: data
+      # 在 Render 後台填（不要寫進 repo）
+      - key: GH_DATA_TOKEN
         sync: false

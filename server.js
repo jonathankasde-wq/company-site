@@ -4,7 +4,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
-import { createStore, createSupabaseStore } from './lib/store.js';
+import { createStore, createSupabaseStore, createGithubStore } from './lib/store.js';
 import {
   hashPassword,
   verifyPassword,
@@ -43,13 +43,27 @@ const BODY_LIMIT = 512 * 1024;
 
 const DEFAULT_SETTINGS = { accent: '#0f6b4f', webhookUrl: '', notifyEmail: '' };
 
-// 有 Supabase 設定就用雲端資料（免費主機的磁碟係臨時，一定要用）；否則用本機 JSON。
+// 有雲端設定就用雲端資料（免費主機的磁碟係臨時，一定要用）；否則用本機 JSON。
 const SUPA_URL = String(process.env.SUPABASE_URL || '').trim();
 const SUPA_KEY = String(process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_KEY || '').trim();
-const store =
-  SUPA_URL && SUPA_KEY
-    ? createSupabaseStore(SUPA_URL, SUPA_KEY, process.env.SUPABASE_TABLE || 'site_kv')
-    : createStore(DATA_DIR);
+const GH_DATA_REPO = String(process.env.GH_DATA_REPO || '').trim();
+const GH_DATA_TOKEN = String(process.env.GH_DATA_TOKEN || '').trim();
+const GH_DATA_BRANCH = String(process.env.GH_DATA_BRANCH || 'data').trim();
+
+let store;
+if (GH_DATA_REPO && GH_DATA_TOKEN) {
+  const [ghOwner, ghRepo] = GH_DATA_REPO.split('/');
+  store = createGithubStore({
+    owner: ghOwner,
+    repo: ghRepo,
+    token: GH_DATA_TOKEN,
+    branch: GH_DATA_BRANCH,
+  });
+} else if (SUPA_URL && SUPA_KEY) {
+  store = createSupabaseStore(SUPA_URL, SUPA_KEY, process.env.SUPABASE_TABLE || 'site_kv');
+} else {
+  store = createStore(DATA_DIR);
+}
 const storageMode = store.mode;
 const startedAt = Date.now();
 
