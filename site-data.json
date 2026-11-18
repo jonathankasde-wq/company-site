@@ -277,5 +277,11 @@
       "description": "香港品牌與網站創作公司，提供品牌策略、企業官網、網店、數碼營銷與內容製作。固定報價、每週進度、附內容管理後台。"
     }
   },
-  "inquiries": []
+  "inquiries": [],
+  "settings": {
+    "accent": "#0f6b4f",
+    "webhookUrl": "",
+    "notifyEmail": "",
+    "siteUrl": "https://company-site-xu0q.onrender.com"
+  }
 }
