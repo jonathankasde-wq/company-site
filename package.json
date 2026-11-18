@@ -1,0 +1,17 @@
+{
+  "name": "company-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "公司官網 + 後台內容管理 + 客戶查詢系統（零依賴，Node 內建模組）",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "tunnelmole": "^2.4.0"
+  }
+}
