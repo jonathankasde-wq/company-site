@@ -1,0 +1,9 @@
+{
+  "auth": {
+    "username": "admin",
+    "salt": "9f9adcce63633bea17dff004b53b3a04",
+    "hash": "a5b40eb20a256248784abf05fddb89b102fbb31cc4489d85ba8d67989e7de89115d795895d148224e864f0628184fbf2e5977afce7899771e19a255a94d55fa2",
+    "algo": "scrypt",
+    "updatedAt": "2026-11-18T16:14:32.160Z"
+  }
+}
