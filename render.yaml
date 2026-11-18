@@ -1,0 +1,25 @@
+# Render Blueprint（免費方案，$0／月）
+# 用法：把專案推上 GitHub → Render → New → Blueprint → 選 repo。
+# 部署完在 Environment 填 SUPABASE_URL / SUPABASE_SERVICE_KEY（見 deploy/supabase.sql）。
+# 免費方案 15 分鐘無流量會休眠（約 1 分鐘喚醒）；用 .github/workflows/warmup.yml 定時喚醒。
+services:
+  - type: web
+    name: company-site
+    runtime: docker
+    plan: free
+    region: singapore
+    healthCheckPath: /
+    envVars:
+      - key: ADMIN_PASSWORD
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: HOST
+        value: 0.0.0.0
+      - key: PORT
+        value: 4321
+      # 在 Render 後台手動填（不要寫進 repo）
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false

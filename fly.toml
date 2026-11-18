@@ -1,0 +1,26 @@
+# Fly.io 設定（https://fly.io/docs/reference/configuration/）
+# 用法：
+#   fly launch --no-deploy        # 會讀這個檔
+#   fly volumes create site_data --region hkg --size 1
+#   fly secrets set ADMIN_PASSWORD=你的強密碼
+#   fly deploy
+app = "company-site"
+primary_region = "hkg"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  HOST = "0.0.0.0"
+  PORT = "4321"
+  DATA_DIR = "/data"
+
+[[mounts]]
+  source = "site_data"
+  destination = "/data"
+
+[http_service]
+  internal_port = 4321
+  force_https = true
+  auto_stop_machines = "suspend"
+  min_machines_running = 1
